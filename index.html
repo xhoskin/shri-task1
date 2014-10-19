@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="style/main.css">
+  <script src="script/jquery.js"></script>
+</head>
+<body>
+  <blockquote>
+    Сверстайте всплывающее окно (попап) — элемент, который показывается поверх
+    содержимого веб-страницы. Он должен всегда находиться в её центре, при этом
+    размер контента может меняться. Предложите максимальное количество решений и
+    объясните, какие у каждого из них есть недостатки и преимущества. Результат
+    пришлите в виде ссылки на GitHub.
+  </blockquote>
+
+  <ol>
+    <li>
+      <h2> С помощью margin </h2>
+        <p> Отступ слева задается автоматически (<em>margin:auto</em>) </p>
+        <p> Отступ сверху считается js-ом (<em>margin-top</em>) </p>
+        <p> <button id="show-margin-popup">Показать</button> </p>
+      <h3> Преимущества </h3>
+      <ol>
+        <li>минимум расчетов на js, не нужно рассчитывать отступ по горизонтали;</li>
+        <li>если изменится ширина попапа, то НЕ нужно пересчитывать отступ по
+        горизонтали чтобы попап оставался по центру экрана;</li>
+        <li>легко делать адаптивную шируну попапа с помощью @media-запросов</li>
+      </ol>
+      <h3> Недостатки </h3>
+      <ol>
+        <li>нельзя прикрутить перетаскивание попапа</li>
+        <li>нужно пересчитывать <em>margin-top</em>, если изменятся высота окна браузера или самого попапа</li>
+      </ol>
+    </li>
+    <li>
+      <h2> С помощью left и top  </h2>
+      <p> <em>left</em> и <em>top</em> расчитывются скриптом, <em> ( <размеры_окна> - <размеры_попапа> ) / 2 </em> </p>
+      <p> <button id="show-top-left-popup">Показать</button> </p>
+      <h3> Преимущества </h3>
+      <ol>
+        <li>можно прикрутить перетаскивание попапа</li>
+      </ol>
+      <h3> Недостатки </h3>
+      <ol>
+        <li>нужно пересчитывать <em>top</em> и <em>left</em> если изменятся размеры окна браузера или самого попапа</li>
+      </ol>
+    </li>
+    <li>
+      <h2> С помощью translate</h2>
+      <p> <em>top</em> и <em>left</em> - <em>50%</em> , <em>transform:translate(-50%, -50%)</em> </p>
+      <p><button id="show-translate-popup">Показать</button></p>
+      <h3> Преимущества </h3>
+      <ol>
+        <li>не требует рассчетов, можно полностью описать в css</li>
+        <li>можно прикрутить перетаскивание попапа, хотя это реализовывается с трудом</li>
+      </ol>
+      <h3> Недостатки </h3>
+      <ol>
+        <li>не будет работать в ie8 и менее</li>
+        <li>требует вендорных префиксов</li>
+      </ol>
+    </li>
+    <li>
+      <h2> С помощью display:table  </h2>
+      <p><button id="show-table-popup">Показать</button></p>
+      <h3> Преимущества </h3>
+      <ol>
+        <li>не требует рассчетов, можно полностью описать в css</li>
+      </ol>
+      <h3> Недостатки </h3>
+      <ol>
+        <li>требует дополнительные обертки вокруг попапа</li>
+        <li>нельзя сделать перетаскивание попапа</li>
+        <li>не будет работать в ie7</li>
+      </ol>
+    </li>
+    <li>
+      <h2> С помощью position:fixed и фиксированных размеров слоя  </h2>
+      <p> <button id="show-fixed-popup">Показать</button> </p>
+      <h3> Преимущества </h3>
+      <ol>
+        <li>не требует рассчетов, можно полностью описать в css</li>
+      </ol>
+      <h3> Недостатки </h3>
+      <ol>
+        <li>обязательно нужно задавать ширину и высоту попапа</li>
+        <li>нельзя автоматически подобрать высоту попапа по содержимому,
+        обязательно нужно ее проставить, значит внизу попапа может образоваться
+        ненужная пустота</li>
+        <li> если переполнится содержимое попапа, то или появится прокрутка,
+        или нужно изменять высоту попапа </li>
+      </ol>
+    </li>
+  </ol>
+
+  <div class="popup">
+    <div class="popup-dialog" id="popup-dialog">
+      <p> Amet reiciendis ea rerum odio placeat illo. Assumenda quasi tenetur
+      quam fugit deserunt. Neque rerum rem illum id dolorem. Minima deserunt
+      porro expedita ipsam id. Suscipit sint ullam et consequuntur!  </p>
+      
+      <p>Lorem sit amet error nihil sint magnam. Pariatur soluta velit
+      similique esse dolor asperiores, sed, eius nemo. Expedita quo inventore
+      reprehenderit sapiente minima ipsam distinctio, blanditiis deserunt
+      odio excepturi, molestias.</p>
+
+      <p>Sit in suscipit asperiores reprehenderit totam! Dolor officia
+      aliquam vero ut eos nostrum necessitatibus harum ipsum tempore iure.
+      Provident vitae dolorum quam amet voluptates reiciendis doloremque rem,
+      quod excepturi excepturi.</p>
+
+      <p>Amet quisquam eligendi ab dolorum omnis excepturi
+      ipsa. Assumenda est aliquid quae quas at cupiditate in? Perferendis
+      nihil repellendus consequuntur quas quaerat tempora animi excepturi
+      voluptates, perspiciatis, repudiandae sapiente vitae?</p>
+
+      <p>Sit in suscipit asperiores reprehenderit totam! Dolor officia
+      aliquam vero ut eos nostrum necessitatibus harum ipsum tempore iure.
+      Provident vitae dolorum quam amet voluptates reiciendis doloremque rem,
+      quod excepturi excepturi.</p>
+
+      <a class="close-popup" href="#">x</a>
+    </div>
+  </div>
+
+  <div class="popup-table" id="popup-table">
+    <div class="popup-cell">
+      <div class="popup-dialog">
+        <p> Amet reiciendis ea rerum odio placeat illo. Assumenda quasi tenetur
+        quam fugit deserunt. Neque rerum rem illum id dolorem. Minima deserunt
+        porro expedita ipsam id. Suscipit sint ullam et consequuntur!  </p>
+
+        <p>Lorem sit amet error nihil sint magnam. Pariatur soluta velit
+        similique esse dolor asperiores, sed, eius nemo. Expedita quo inventore
+        reprehenderit sapiente minima ipsam distinctio, blanditiis deserunt
+        odio excepturi, molestias.</p>
+
+        <p>Sit in suscipit asperiores reprehenderit totam! Dolor officia
+        aliquam vero ut eos nostrum necessitatibus harum ipsum tempore iure.
+        Provident vitae dolorum quam amet voluptates reiciendis doloremque rem,
+        quod excepturi excepturi.</p>
+
+        <p>Amet quisquam eligendi ab dolorum omnis excepturi
+        ipsa. Assumenda est aliquid quae quas at cupiditate in? Perferendis
+        nihil repellendus consequuntur quas quaerat tempora animi excepturi
+        voluptates, perspiciatis, repudiandae sapiente vitae?</p>
+
+        <p>Sit in suscipit asperiores reprehenderit totam! Dolor officia
+        aliquam vero ut eos nostrum necessitatibus harum ipsum tempore iure.
+        Provident vitae dolorum quam amet voluptates reiciendis doloremque rem,
+        quod excepturi excepturi.</p>
+
+        <a class="close-popup" href="#">x</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="script/main.js"></script>
+
+</body>
+</html>
